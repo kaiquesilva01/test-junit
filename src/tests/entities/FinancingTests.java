@@ -58,4 +58,34 @@ public class FinancingTests {
             f.setIncome(1900.0);
         });
     }
+
+    @Test
+    public void setMonthsShouldSetValueWhenValidData() {
+        Financing f = FinancingFactory.createTrueFinancing();
+        f.setMonths(81);
+        Assertions.assertEquals(81,f.getMonths());
+    }
+
+    @Test
+    public void setMonthsShouldIllegalArgumentExceptionWhenNotValidData() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Financing f = FinancingFactory.createTrueFinancing();
+            f.setMonths(79);
+        });
+    }
+
+    @Test
+    public void entryShouldCalculateEntryCorrectly() {
+        Financing f = FinancingFactory.createTrueFinancing();
+
+        Assertions.assertEquals(20000.0,f.entry());
+    }
+
+    @Test
+    public void quotaShouldCalculateEntryCorrectly() {
+        Financing f = FinancingFactory.createTrueFinancing();
+
+        Assertions.assertEquals(1000.0,f.quota());
+    }
 }
